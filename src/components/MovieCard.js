@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class MovieCard extends React.Component {
   render () {
       const {movie} = this.props;
@@ -13,8 +12,8 @@ class MovieCard extends React.Component {
             <div className="title">{movie.Title}</div>
             <div className="plot">{movie.Plot}</div>
             <div className="footer">
-            <div className="rating">{movie.imdbRating}</div>
-            <button className="favourite-btn">Favourite</button>
+                <div className="rating">{movie.imdbRating}</div>
+                <button className="favourite-btn">Favourite</button>
             </div>
         </div>
        </div>

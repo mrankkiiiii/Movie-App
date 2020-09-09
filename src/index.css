@@ -18,7 +18,7 @@ body {
 }
 .search-container input {
   height: 43px;
-  width: 600px;
+  width: 60%;
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
   border: none;
@@ -28,6 +28,7 @@ body {
 }
 .search-container {
   position: relative;
+  width: 100%;
 }
 .search-results {
   position: absolute;
@@ -118,7 +119,6 @@ body {
 .movie-card {
   background: #fff;
   padding: 0;
-  border: none;
   border-radius: 3px;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #f1f1f1;
   display: flex;
