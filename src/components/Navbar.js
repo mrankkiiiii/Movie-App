@@ -1,12 +1,17 @@
 import React from 'react';
 
 
-function App() {
-  return (
-    <div className="nav">
-      
-     </div>
-  );
+class Navbar extends React.Component {
+  render () {
+    return (
+      <div className="nav">
+        <div className="search-container">
+          <input/>
+          <button id="search-btn">Search</button>
+        </div>
+       </div>
+    );
+  }
 }
 
-export default App;
+export default Navbar;

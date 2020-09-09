@@ -18,9 +18,9 @@ function App() {
       <div className="list">
       {
         data.map((movie) => {
-          <MovieCard 
+          {/* <MovieCard 
             movie = {movie}
-          />
+          /> */}
         })
       }
       </div>
