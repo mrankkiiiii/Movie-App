@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import Navbar from './Navbar';
 import { data } from '../data';
+import MovieCard from '../components/MovieCard';
 
 function App() {
   return (
@@ -17,11 +18,11 @@ function App() {
 
       <div className="list">
       {
-        data.map((movie) => {
-          {/* <MovieCard 
+        data.map( (movie) => (
+          <MovieCard 
             movie = {movie}
-          /> */}
-        })
+          />
+        ))
       }
       </div>
 
