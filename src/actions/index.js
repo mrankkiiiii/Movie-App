@@ -1,4 +1,4 @@
 {
-    type: '';
-    payload: ''
+    type: 'ADD_MOVIES';
+    movies: []
 }
