@@ -25,7 +25,7 @@ export default function movies(state = initialMoviesState, action){
             }
         case REMOVE_FROM_FAVOURITE:
             const filteredArray = state.favourites.filter(
-                movie => movie.Title != action.movie.Title
+                movie => movie.Title !== action.movie.Title
             );
             return{
                 ...state,
