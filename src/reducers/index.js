@@ -1,10 +1,13 @@
+
+// Movies Reducer
 import { ADD_MOVIES, ADD_TO_FAVOURITE, REMOVE_FROM_FAVOURITE, SET_SHOW_FAVOURITE } from '../actions';
 const initialMoviesState = {
     list: [],
     favourites: [],
     showFavourite: false
-}
-export default function movies(state = initialMoviesState, action){
+};
+
+export function movies(state = initialMoviesState, action){
     // if(action.type === ADD_MOVIES){
     //     return {
     //         ...state,
@@ -38,5 +41,25 @@ export default function movies(state = initialMoviesState, action){
             }
         default:
             return state;
+    }
+}
+
+// Serarch reducer
+const initialSearchState = {
+    result: {}
+};
+export function search (state = initialSearchState, action){
+    return state;
+}
+
+//root reducer
+const initialRootState = {
+    movies: initialMoviesState,
+    search: initialSearchState
+};
+export default function rootReducer(state = initialRootState, action){
+    return {
+        movies: movies(state.movies, action),
+        search: search(state.search, action)
     }
 }
