@@ -15,7 +15,18 @@ class App extends React.Component {
     //dispatch the action
     store.dispatch(addMovies(data));
   }
+
+  isMovieFavourite = (movie) =>{
+    const { favourites } = this.props.store.getState();
+    const index = favourites.indexOf(movie);
+    if(index !== -1){
+      //found movie
+      return true;
+    }
+    return false;
+  }
   render(){
+    console.log("Final State",this.props.store.getState());
     const { list } = this.props.store.getState(); //[] now {lis:[],favourites:[]}
     return (
       <div className="App">
@@ -34,6 +45,8 @@ class App extends React.Component {
               <MovieCard 
                 movie = {movie}
                 key={`movies-${index}`}
+                dispatch={this.props.store.dispatch}
+                isMovieFavourite = {this.isMovieFavourite(movie)}
               />
             ))
           }
