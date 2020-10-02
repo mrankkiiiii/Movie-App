@@ -34,6 +34,7 @@ body {
   position: absolute;
   background: #fff;
   width: 69%;
+  max-height: 400px;
   left: 16%;
   box-sizing: border-box;
   border: 1px solid #e1e1e1;
@@ -46,7 +47,7 @@ body {
 .search-result .movie-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .search-result .movie-info button {
   max-width: 40%;
@@ -68,8 +69,8 @@ body {
   display: flex;
 }
 .search-result img {
-  height: auto;
-  width: 100%;
+  /* height: 100%;
+  width: 100%; */
 }
 .search-result > div span {
   font-size: 20px;
@@ -128,6 +129,7 @@ body {
 .movie-card {
   background: #fff;
   padding: 0;
+  min-width: 500px;
   border-radius: 3px;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #f1f1f1;
   display: flex;
