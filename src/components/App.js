@@ -1,23 +1,25 @@
 import React from 'react';
 import '../App.css';
 import Navbar from './Navbar';
-import { data } from '../data';
+import { data as moviesList } from '../data';
 import MovieCard from './MovieCard';
 import { addMovies, setShowFavourite } from '../actions';
+import {connect } from '../index';
 
 class App extends React.Component {
   componentDidMount(){
-    const {store} = this.props;
-    store.subscribe(()=>{
-      this.forceUpdate();
-    })
+    this.props.dispatch(addMovies(moviesList));
+    // const {store} = this.props;
+    // store.subscribe(()=>{
+    //   this.forceUpdate();
+    // })
     //make api call to get the movies
     //dispatch the action
-    store.dispatch(addMovies(data));
+    // store.dispatch(addMovies(data));
   }
 
   isMovieFavourite = (movie) =>{
-    const { movies } = this.props.store.getState();
+    const { movies } = this.props;
     const index = movies.favourites.indexOf(movie);
     if(index !== -1){
       //found movie
@@ -26,17 +28,17 @@ class App extends React.Component {
     return false;
   }
   onChangeTab = (val) =>{
-    this.props.store.dispatch(setShowFavourite(val))
+    this.props.dispatch(setShowFavourite(val))
   }
   render(){
     // console.log("Final State",this.props.store.getState());
-    const{ movies } =  this.props.store.getState();  //{movies: {}, search:{}}
-    const { list, favourites, showFavourite } = movies; 
+    const{ movies, search } =  this.props;  //{movies: {}, search:{}}
+    const { list, favourites = [], showFavourite = [] } = movies; 
     const displayMovies = showFavourite ? favourites : list
     return (
       <div className="App">
         <Navbar
-
+          search={search}
         />
           <div className="main">
           <div className="tabs">
@@ -46,11 +48,11 @@ class App extends React.Component {
 
           <div className="list">
           {
-            displayMovies.map( (movie, index) => (
+            displayMovies.map( (movie) => (
               <MovieCard 
                 movie = {movie}
-                key={`movies-${index}`}
-                dispatch={this.props.store.dispatch}
+                key={movie.imdbID}
+                dispatch={this.props.dispatch}
                 isMovieFavourite = {this.isMovieFavourite(movie)}
               />
             ))
@@ -63,4 +65,11 @@ class App extends React.Component {
   }
 }
 
-export default App;
+function callback(state) {
+  return {
+    movies: state.movies,
+    search: state.search,
+  };
+}
+const connectedComponent = connect(callback)(App);
+export default connectedComponent;

@@ -33,10 +33,12 @@ body {
 .search-results {
   position: absolute;
   background: #fff;
-  width: 100%;
+  width: 69%;
+  left: 16%;
   box-sizing: border-box;
   border: 1px solid #e1e1e1;
   top: 42px;
+  overflow: hidden;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   z-index: 100;
@@ -47,6 +49,7 @@ body {
   justify-content: space-between;
 }
 .search-result .movie-info button {
+  max-width: 40%;
   margin: 20px 10px;
   background: #21ba45;
   color: #fff;
@@ -56,11 +59,17 @@ body {
   padding: 9px 0;
   border-radius: 4px;
 }
+
+.search-result .movie-info button:hover {
+  background: #df8d13;
+}
+
 .search-result {
   display: flex;
 }
 .search-result img {
-  height: 150px;
+  height: auto;
+  width: 100%;
 }
 .search-result > div span {
   font-size: 20px;

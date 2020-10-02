@@ -4,7 +4,9 @@ import {
     ADD_MOVIES,
     ADD_TO_FAVOURITE,
     REMOVE_FROM_FAVOURITE,
-    SET_SHOW_FAVOURITE
+    SET_SHOW_FAVOURITE,
+    ADD_SEARCH_RESULT,
+    ADD_MOVIE_TO_LIST
 } from '../actions';
 
 const initialMoviesState = {
@@ -45,6 +47,11 @@ export function movies(state = initialMoviesState, action){
                 ...state,
                 showFavourite: action.val
             }
+        case ADD_MOVIE_TO_LIST:
+            return{
+                ...state,
+                list: [action.movie, ...state.list],
+            }
         default:
             return state;
     }
@@ -52,11 +59,26 @@ export function movies(state = initialMoviesState, action){
 
 // Serarch reducer
 const initialSearchState = {
-    result: {}
+    result: {},
+    showSearchResults: false
 };
-export function search (state = initialSearchState, action){
-    return state;
-}
+export function search(state = initialSearchState, action) {
+    switch (action.type) {
+      case ADD_SEARCH_RESULT:
+        return {
+          ...state,
+          results: action.movie,
+          showSearchResults: true,
+        };
+      case ADD_MOVIE_TO_LIST:
+        return {
+          ...state,
+          showSearchResults: false,
+        };
+      default:
+        return state;
+    }
+  }
 
 //root reducer
 // const initialRootState = {
@@ -75,4 +97,4 @@ export function search (state = initialSearchState, action){
 export default combineReducers({
     movies,
     search
-})
+});
