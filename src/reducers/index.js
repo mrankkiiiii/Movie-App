@@ -59,7 +59,8 @@ export function movies(state = initialMoviesState, action){
 
 // Serarch reducer
 const initialSearchState = {
-    result: {},
+    // [] for array of movies and { } for a single movie
+    result: [],
     showSearchResults: false
 };
 export function search(state = initialSearchState, action) {

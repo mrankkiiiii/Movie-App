@@ -25,8 +25,8 @@ class Navbar extends Component {
   }
   render () {
     
-    const { showSearchResults, results: movie } = this.props.search;
-    console.log("fg",this.props)
+    const { showSearchResults, results: movies } = this.props.search;
+    console.log("fg",movies)
     return (
       <div className="nav">
         <div className="search-container">
@@ -34,7 +34,9 @@ class Navbar extends Component {
           <button id="search-btn" onClick={this.handleSearchClick}>Search</button>
           { showSearchResults && (
             <div className="search-results">
-              <div className="search-result">
+             {
+               movies.Search.map((movie)=>(
+                <div className="search-result">
                 <img src={movie.Poster} alt="search-pic" />
                 <div className="movie-info">
                   <span>{movie.Title}</span>
@@ -44,6 +46,8 @@ class Navbar extends Component {
                   </button>
                 </div>
               </div>
+               ))
+             }
             </div>
           )}
         </div>
