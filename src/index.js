@@ -1,14 +1,14 @@
-import React,{createContext} from 'react';
-import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware} from 'redux';
-import './index.css';
-import App from './components/App';
-import rootReducer from './reducers';
-import thunk from 'redux-thunk';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import "./index.css";
+import App from "./components/App";
+import rootReducer from "./reducers";
+import thunk from "redux-thunk";
 
-
-const logger = ({dispatch, getState}) => (next) => (action) =>{
-  console.log('Action',action);
+const logger = ({ dispatch, getState }) => (next) => (action) => {
+  console.log("Action", action);
   next(action);
 };
 
@@ -29,7 +29,6 @@ const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 //     )
 //   }
 // }
-
 
 // export function connect(callback) {
 //   return function (Component) {
@@ -69,7 +68,6 @@ const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 //     return ConnectedComponentWrapper;
 //   };
 // }
-  
 
 // console.log(store);
 
@@ -85,8 +83,8 @@ const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 // console.log("Final State",store.getState());
 
 ReactDOM.render(
-  <Provider store ={store}>
-    <App/>
+  <Provider store={store}>
+    <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

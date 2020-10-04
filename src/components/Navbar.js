@@ -1,61 +1,65 @@
-import React from 'react';
-import {addMovieToList, handleMovieSearch} from '../actions';
-import {connect} from '..'
+import React from "react";
+import { addMovieToList, handleMovieSearch } from "../actions";
+import { connect } from "react-redux";
 
 class Navbar extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      searchText: ''
+      searchText: "",
     };
   }
-  
+
   handleAddToMovies = (movie) => {
     this.props.dispatch(addMovieToList(movie));
-  }
+  };
 
   handleSearchClick = () => {
     const { searchText } = this.state;
     this.props.dispatch(handleMovieSearch(searchText));
-  }
+  };
   handleSearchChange = (event) => {
     this.setState({
-      searchText: event.target.value
+      searchText: event.target.value,
     });
-  }
-  render () {
-    
+  };
+  render() {
     const { showSearchResults, results: movies } = this.props.search;
-    // console.log("fg",movies)
     return (
       <div className="nav">
         <div className="search-container">
-          <input placeholder="Search" onChange={this.handleSearchChange}/>
-          <button id="search-btn" onClick={this.handleSearchClick}>Search</button>
-          { showSearchResults && (
+          <input placeholder="Search" onChange={this.handleSearchChange} />
+          <button id="search-btn" onClick={this.handleSearchClick}>
+            Search
+          </button>
+          {showSearchResults && movies.Response != "False" ? (
             <div className="search-results">
-             {
-               movies.Search.map((movie)=>(
+              {movies.Search.map((movie) => (
                 <div className="search-result">
-                <img src={movie.Poster} alt="search-pic" />
-                <div className="movie-info">
-                  <span>{movie.Title}</span>
-                  <span style={{fontSize: 15, textAlign: "left"}}>{movie.Plot}</span>
-                  <button onClick={() => this.handleAddToMovies(movie)}>
-                    Add to Movies
-                  </button>
+                  <img src={movie.Poster} alt="search-pic" />
+                  <div className="movie-info">
+                    <span>{movie.Title}</span>
+                    <span style={{ fontSize: 15, textAlign: "left" }}>
+                      {movie.Plot}
+                    </span>
+                    <button onClick={() => this.handleAddToMovies(movie)}>
+                      Add to Movies
+                    </button>
+                  </div>
                 </div>
-              </div>
-               ))
-             }
+              ))}
+            </div>
+          ) : (
+            <div className="search-results" style={{fontSize: 20, fontWeight: 700, padding: 20}}>
+                No Search Result
             </div>
           )}
         </div>
-       </div>
+      </div>
     );
   }
 }
-//  instead of write wrapper here we can use connect function 
+//  instead of write wrapper here we can use connect function
 
 // class NavbarWrapper extends React.Component{
 //   render(){
@@ -73,7 +77,8 @@ class Navbar extends React.Component {
 
 // export default NavbarWrapper;
 
-
+// const connectedNavComponent = connect(mapStateToProps)(Navbar);
+// export default connectedNavComponent;
 
 // function mapStateToProps ({ search }){
 //   return {
@@ -86,5 +91,5 @@ function mapStateToProps(state) {
     search: state.search,
   };
 }
-const connectedNavComponent = connect(mapStateToProps)(Navbar);
-export default connectedNavComponent;
+
+export default connect(mapStateToProps)(Navbar);

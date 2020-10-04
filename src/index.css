@@ -34,7 +34,7 @@ body {
   position: absolute;
   background: #fff;
   width: 69%;
-  height: 500px;
+  max-height: 500px;
   overflow: scroll;
   left: 16%;
   box-sizing: border-box;

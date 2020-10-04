@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import { data as moviesList } from "../data";
 import MovieCard from "./MovieCard";
 import { addMovies, setShowFavourite } from "../actions";
-import { connect } from "../index";
+import { connect } from "react-redux";
 
 class App extends React.Component {
   componentDidMount() {
@@ -79,5 +79,6 @@ function mapStateToProps(state) {
     search: state.search,
   };
 }
-const connectedAppComponent = connect(mapStateToProps)(App);
-export default connectedAppComponent;
+export default connect(mapStateToProps)(App);
+// const connectedAppComponent = connect(mapStateToProps)(App);
+// export default connectedAppComponent;
