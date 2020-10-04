@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {addMovieToList, handleMovieSearch} from '../actions';
-// import { data} from '../data'
-import {StoreContext} from '..';
-class Navbar extends Component {
+import {connect} from '..'
+
+class Navbar extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -26,7 +26,7 @@ class Navbar extends Component {
   render () {
     
     const { showSearchResults, results: movies } = this.props.search;
-    console.log("fg",movies)
+    // console.log("fg",movies)
     return (
       <div className="nav">
         <div className="search-container">
@@ -55,19 +55,36 @@ class Navbar extends Component {
     );
   }
 }
+//  instead of write wrapper here we can use connect function 
 
-class NavbarWrapper extends React.Component{
-  render(){
-    return (
-      <StoreContext.Consumer>
-        {
-          (store) => (
-            <Navbar dispatch={store.dispatch} search ={this.props.search}/>
-          )
-        }
-      </StoreContext.Consumer>
-    );
-  }
+// class NavbarWrapper extends React.Component{
+//   render(){
+//     return (
+//       <StoreContext.Consumer>
+//         {
+//           (store) => (
+//             <Navbar dispatch={store.dispatch} search ={this.props.search}/>
+//           )
+//         }
+//       </StoreContext.Consumer>
+//     );
+//   }
+// }
+
+// export default NavbarWrapper;
+
+
+
+// function mapStateToProps ({ search }){
+//   return {
+//     search
+//   }
+// }
+// or  upper one is Es6 destructuting
+function mapStateToProps(state) {
+  return {
+    search: state.search,
+  };
 }
-
-export default NavbarWrapper;
+const connectedNavComponent = connect(mapStateToProps)(Navbar);
+export default connectedNavComponent;
