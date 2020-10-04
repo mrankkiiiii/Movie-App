@@ -25,6 +25,7 @@ class Navbar extends React.Component {
   };
   render() {
     const { showSearchResults, results: movies } = this.props.search;
+    console.log(movies);
     return (
       <div className="nav">
         <div className="search-container">
@@ -32,16 +33,16 @@ class Navbar extends React.Component {
           <button id="search-btn" onClick={this.handleSearchClick}>
             Search
           </button>
-          {showSearchResults && movies.Response != "False" ? (
+          {showSearchResults && movies.Response !== "False" ? (
             <div className="search-results">
               {movies.Search.map((movie) => (
                 <div className="search-result">
-                  <img src={movie.Poster} alt="search-pic" />
+                  <div className="search-img">
+                    <img src={movie.Poster} alt="search-pic" />
+                  </div>
                   <div className="movie-info">
-                    <span>{movie.Title}</span>
-                    <span style={{ fontSize: 15, textAlign: "left" }}>
-                      {movie.Plot}
-                    </span>
+                    <span className="movie-title">{movie.Title}</span>
+                    <span className="movie-year">{movie.Year}</span>
                     <button onClick={() => this.handleAddToMovies(movie)}>
                       Add to Movies
                     </button>
@@ -50,9 +51,14 @@ class Navbar extends React.Component {
               ))}
             </div>
           ) : (
-            <div className="search-results" style={{fontSize: 20, fontWeight: 700, padding: 20}}>
+            showSearchResults && (
+              <div
+                className="search-results"
+                style={{ fontSize: 20, fontWeight: 700, padding: 20 }}
+              >
                 No Search Result
-            </div>
+              </div>
+            )
           )}
         </div>
       </div>
